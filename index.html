@@ -500,7 +500,7 @@ a+b;a-b
     <p>When doing arithmetic computations on vectors of different lengths, R <code>recycles</code> the shorter vector, that means the shorter vector is concatenated as many times until its length fits the length of the longer vector</p>
 
 <pre><code class="r">bShort &lt;- b[1:2]
-a+bShort
+a + bShort
 </code></pre>
 
 <pre><code>## [1]  5 11  9 19
@@ -842,6 +842,174 @@ mA;mA[&quot;row1&quot;,&quot;col2&quot;]
 <pre><code>## [1] &quot;Fred&quot; &quot;Mary&quot;
 </code></pre>
 
+<ul>
+<li>modification of a list component</li>
+</ul>
+
+<pre><code class="r">lst[[1]][2] &lt;- 43;lst[1]
+</code></pre>
+
+<pre><code>## $n
+## [1]  5 43  1
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h3>Access of list components by name</h3>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>slicing a list by name</li>
+</ul>
+
+<pre><code class="r">lst[&quot;s&quot;]
+</code></pre>
+
+<pre><code>## $s
+## [1] &quot;Fred&quot; &quot;Mary&quot;
+</code></pre>
+
+<ul>
+<li>component access</li>
+</ul>
+
+<pre><code class="r">lst$s
+</code></pre>
+
+<pre><code>## [1] &quot;Fred&quot; &quot;Mary&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>Special List - Data Frame</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A <code>data frame</code> is a list of vectors all of the same length</li>
+<li>Construction using function <code>data.frame()</code></li>
+</ul>
+
+<pre><code class="r">daFr &lt;- data.frame(nums = c(2,-12), strs = c(&quot;Alice&quot;,&quot;Bob&quot;), bools = c(TRUE,FALSE)) 
+</code></pre>
+
+<ul>
+<li>access can be via indices or via names</li>
+</ul>
+
+<pre><code class="r">daFr[2,1]; daFr$bools
+</code></pre>
+
+<pre><code>## [1] -12
+</code></pre>
+
+<pre><code>## [1]  TRUE FALSE
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
+  <hgroup>
+    <h3>R has built-in data frames</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">head(mtcars, n = 3)
+</code></pre>
+
+<pre><code>##                mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+</code></pre>
+
+<ul>
+<li>Top line is denoted <code>header</code>, it is obtained via function <code>colnames()</code></li>
+</ul>
+
+<pre><code class="r">colnames(mtcars)
+</code></pre>
+
+<pre><code>##  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;
+## [11] &quot;carb&quot;
+</code></pre>
+
+<ul>
+<li>Each line after the header is called a data row</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-34" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>left most column contains row names</li>
+</ul>
+
+<pre><code class="r">head(rownames(mtcars), n = 3)
+</code></pre>
+
+<pre><code>## [1] &quot;Mazda RX4&quot;     &quot;Mazda RX4 Wag&quot; &quot;Datsun 710&quot;
+</code></pre>
+
+<ul>
+<li>number of rows and columns are obtained by <code>nrow()</code> and <code>ncol()</code> or by the <code>dim()</code> </li>
+</ul>
+
+<pre><code class="r">nrow(mtcars);ncol(mtcars)
+</code></pre>
+
+<pre><code>## [1] 32
+</code></pre>
+
+<pre><code>## [1] 11
+</code></pre>
+
+<pre><code class="r">dim(mtcars)
+</code></pre>
+
+<pre><code>## [1] 32 11
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h3>Data Frame Column Vector</h3>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Since a data frame is a special list, access can be done as in lists, e.g., by column names</li>
+</ul>
+
+<pre><code class="r">head(mtcars$mpg, n = 3)
+</code></pre>
+
+<pre><code>## [1] 21.0 21.0 22.8
+</code></pre>
+
+<ul>
+<li>data frames also have properties of matrices and therefore access can also be done via index names</li>
+</ul>
+
+<pre><code class="r">mtcars[&quot;Valiant&quot;,&quot;gear&quot;]
+</code></pre>
+
+<pre><code>## [1] 3
+</code></pre>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -1028,6 +1196,36 @@ mA;mA[&quot;row1&quot;,&quot;col2&quot;]
       <a href="#" target="_self" rel='tooltip' 
         data-slide=30 title='Accessing Components of a List'>
          30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Access of list components by name'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Special List - Data Frame'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='R has built-in data frames'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title=''>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Data Frame Column Vector'>
+         35
       </a>
     </li>
   </ul>

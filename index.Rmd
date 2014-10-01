@@ -239,7 +239,7 @@ crossprod(a,b)
 When doing arithmetic computations on vectors of different lengths, R `recycles` the shorter vector, that means the shorter vector is concatenated as many times until its length fits the length of the longer vector
 ```{r}
 bShort <- b[1:2]
-a+bShort
+a + bShort
 ```
 In case the length of the longer vector is not a multiple of the length of the shorter vector, R still recycles the shorter vector and it produces a `warning` on the console
 
@@ -383,3 +383,71 @@ returns a new list with the second component of `lst`
 ```{r}
 lst[[2]]
 ```
+
+- modification of a list component
+```{r}
+lst[[1]][2] <- 43;lst[1]
+```
+
+---
+
+### Access of list components by name
+- slicing a list by name
+```{r}
+lst["s"]
+```
+
+- component access
+```{r}
+lst$s
+```
+
+---
+
+## Special List - Data Frame
+- A `data frame` is a list of vectors all of the same length
+- Construction using function `data.frame()`
+```{r}
+daFr <- data.frame(nums = c(2,-12), strs = c("Alice","Bob"), bools = c(TRUE,FALSE)) 
+```
+- access can be via indices or via names
+```{r}
+daFr[2,1]; daFr$bools
+```
+
+---
+
+### R has built-in data frames
+```{r}
+head(mtcars, n = 3)
+```
+- Top line is denoted `header`, it is obtained via function `colnames()`
+```{r}
+colnames(mtcars)
+```
+- Each line after the header is called a data row
+
+---
+
+- left most column contains row names
+```{r}
+head(rownames(mtcars), n = 3)
+```
+- number of rows and columns are obtained by `nrow()` and `ncol()` or by the `dim()` 
+```{r}
+nrow(mtcars);ncol(mtcars)
+dim(mtcars)
+```
+
+---
+
+### Data Frame Column Vector
+- Since a data frame is a special list, access can be done as in lists, e.g., by column names
+```{r}
+head(mtcars$mpg, n = 3)
+```
+- data frames also have properties of matrices and therefore access can also be done via index names
+```{r}
+mtcars["Valiant","gear"]
+```
+

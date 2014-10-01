@@ -375,7 +375,7 @@ When doing arithmetic computations on vectors of different lengths, R `recycles`
 
 ```r
 bShort <- b[1:2]
-a+bShort
+a + bShort
 ```
 
 ```
@@ -641,3 +641,143 @@ lst[[2]]
 ```
 ## [1] "Fred" "Mary"
 ```
+
+- modification of a list component
+
+```r
+lst[[1]][2] <- 43;lst[1]
+```
+
+```
+## $n
+## [1]  5 43  1
+```
+
+---
+
+### Access of list components by name
+- slicing a list by name
+
+```r
+lst["s"]
+```
+
+```
+## $s
+## [1] "Fred" "Mary"
+```
+
+- component access
+
+```r
+lst$s
+```
+
+```
+## [1] "Fred" "Mary"
+```
+
+---
+
+## Special List - Data Frame
+- A `data frame` is a list of vectors all of the same length
+- Construction using function `data.frame()`
+
+```r
+daFr <- data.frame(nums = c(2,-12), strs = c("Alice","Bob"), bools = c(TRUE,FALSE)) 
+```
+- access can be via indices or via names
+
+```r
+daFr[2,1]; daFr$bools
+```
+
+```
+## [1] -12
+```
+
+```
+## [1]  TRUE FALSE
+```
+
+---
+
+### R has built-in data frames
+
+```r
+head(mtcars, n = 3)
+```
+
+```
+##                mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+```
+- Top line is denoted `header`, it is obtained via function `colnames()`
+
+```r
+colnames(mtcars)
+```
+
+```
+##  [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear"
+## [11] "carb"
+```
+- Each line after the header is called a data row
+
+---
+
+- left most column contains row names
+
+```r
+head(rownames(mtcars), n = 3)
+```
+
+```
+## [1] "Mazda RX4"     "Mazda RX4 Wag" "Datsun 710"
+```
+- number of rows and columns are obtained by `nrow()` and `ncol()` or by the `dim()` 
+
+```r
+nrow(mtcars);ncol(mtcars)
+```
+
+```
+## [1] 32
+```
+
+```
+## [1] 11
+```
+
+```r
+dim(mtcars)
+```
+
+```
+## [1] 32 11
+```
+
+---
+
+### Data Frame Column Vector
+- Since a data frame is a special list, access can be done as in lists, e.g., by column names
+
+```r
+head(mtcars$mpg, n = 3)
+```
+
+```
+## [1] 21.0 21.0 22.8
+```
+- data frames also have properties of matrices and therefore access can also be done via index names
+
+```r
+mtcars["Valiant","gear"]
+```
+
+```
+## [1] 3
+```
+
