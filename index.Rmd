@@ -15,7 +15,7 @@ knit        : slidify::knit2slides
 
 ### Download from CRAN
 - CRAN - The Comprehensive R Archive Network
-http://http://cran.r-project.org/
+http://cran.r-project.org/
 - local mirror @ ETH: http://stat.ethz.ch/CRAN/
 - precompiled binaries for Linux, Mac OS X and Windows
 
