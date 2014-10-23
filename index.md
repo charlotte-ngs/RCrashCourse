@@ -2,7 +2,7 @@
 title       : "Crash Course Into R"
 subtitle    : "A Gentle Introduction"
 author      : "Peter von Rohr"
-job         : "Charlotte-NGS Team"
+job         : "Charlotte Team"
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
@@ -15,7 +15,7 @@ knit        : slidify::knit2slides
 
 ### Download from CRAN
 - CRAN - The Comprehensive R Archive Network
-http://http://cran.r-project.org/
+http://cran.r-project.org/
 - local mirror @ ETH: http://stat.ethz.ch/CRAN/
 - precompiled binaries for Linux, Mac OS X and Windows
 
